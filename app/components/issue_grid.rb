@@ -11,7 +11,7 @@ class IssueGrid < Netzke::Basepack::GridPanel
   override_column :actions, width: 20
 
   # The inspect action (and column)
-  include Netzke::Projects::Inspectable
+  include Netzke::Yanit::Inspectable
 
   # Use our custom IssueForm for Add/Edit forms
   add_form_config         class_name: "IssueForm"

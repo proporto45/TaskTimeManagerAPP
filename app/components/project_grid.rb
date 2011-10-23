@@ -10,5 +10,5 @@ class ProjectGrid < Netzke::Basepack::GridPanel
   override_column :updated_at, read_only: true
 
   # The inspect action (and column)
-  include Netzke::Projects::Inspectable
+  include Netzke::Yanit::Inspectable
 end

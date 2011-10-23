@@ -1,5 +1,5 @@
 module Netzke
-  module Projects
+  module Yanit
     module Inspectable
       extend ActiveSupport::Concern
 

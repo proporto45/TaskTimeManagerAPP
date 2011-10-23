@@ -8,5 +8,5 @@ class UserGrid < Netzke::Basepack::GridPanel
   override_column :created_at, read_only: true
   override_column :updated_at, read_only: true
 
-  include Netzke::Projects::Inspectable
+  include Netzke::Yanit::Inspectable
 end

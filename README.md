@@ -8,15 +8,16 @@ It is a very simple issue tracker driven by the following models and relationshi
 
 ## Installation
 
-1) Create your database.yml
-2) rake db:setup
+* Create your database.yml
+* bundle install
+* rake db:setup
 
 Test data is included.
 
 Have fun!
 
 ---
-Released by @nomadcoder under the MIT license except for:
+Released by [@nomadcoder](http://twitter.com/nomadcoder) under the MIT license **except for**:
 
 * Sencha Ext JS: http://www.sencha.com/products/extjs/license/
 * FamFamFam icons (public/images/icons): http://creativecommons.org/licenses/by/2.5/

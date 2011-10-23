@@ -4,7 +4,7 @@ One-page demo RIA for [RubyShift](http://rubyshift.org/) 2011.
 
 It is a very simple issue tracker driven by the following models and relationships between them:
 
-`Issue` that `belong_to` `User` and `belong_to` `Project`.
+`Issue` that `belongs_to` `User` and `belongs_to` `Project`.
 
 ## Installation
 

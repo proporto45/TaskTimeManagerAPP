@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  description: MyText
+  priority: 1
+  project_id: 1
+  assignee_id: 1
+  started_on: 2011-10-11
+  due_on: 2011-10-11
+  status: MyString
+
+two:
+  name: MyString
+  description: MyText
+  priority: 1
+  project_id: 1
+  assignee_id: 1
+  started_on: 2011-10-11
+  due_on: 2011-10-11
+  status: MyString

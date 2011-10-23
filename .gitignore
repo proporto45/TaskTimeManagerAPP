@@ -1,0 +1,10 @@
+.bundle
+db/*.sqlite3
+log/*.log
+tmp/
+.sass-cache/
+*.tmproj
+netzke-core
+netzke-basepack
+netzke-communitypack
+database.yml

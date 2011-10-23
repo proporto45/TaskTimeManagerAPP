@@ -1,0 +1,24 @@
+.icon-projects {
+  background-color:transparent; width:16px; height:16px; background-image: url(/images/icons/page_white_stack.png) !important;
+}
+
+.icon-users {
+  background-color:transparent; width:16px; height:16px; background-image: url(/images/icons/group.png) !important;
+}
+
+.icon-issues {
+  background-color:transparent; width:16px; height:16px; background-image: url(/images/icons/folder_bug.png) !important;
+}
+
+.icon-users-issues {
+  background-color:transparent; width:16px; height:16px; background-image: url(/images/icons/report_user.png) !important;
+}
+
+.icon-projects-issues {
+  background-color:transparent; width:16px; height:16px; background-image: url(/images/icons/page_white_copy.png) !important;
+}
+
+.icon-all-issues {
+  background-color:transparent; width:16px; height:16px; background-image: url(/images/icons/application_view_list.png) !important;
+}
+

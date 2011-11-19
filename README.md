@@ -6,6 +6,8 @@ It is a very simple issue tracker driven by the following models and relationshi
 
 `Issue` that `belongs_to` `User` and `belongs_to` `Project`.
 
+This application is deployed on [Heroku](http://yanit.heroku.com) - try it out live!
+
 ## Installation
 
 * Create your database.yml

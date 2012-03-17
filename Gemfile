@@ -7,9 +7,14 @@ gem 'rails', '3.1.1'
 
 gem 'sqlite3'
 
-gem 'netzke-core'
-gem 'netzke-basepack'
-gem 'netzke-communitypack'
+#gem 'netzke-core'
+#gem 'netzke-basepack'
+#gem 'netzke-communitypack'
+
+gem 'netzke-core',        :path => File.expand_path('../vendor/gems/netzke-core', __FILE__)
+gem 'netzke-basepack',        :path => File.expand_path('../vendor/gems/netzke-basepack', __FILE__)
+gem 'netzke-communitypack', :path => File.expand_path('../vendor/gems/netzke-communitypack', __FILE__)
+
 
 gem 'forgery'
 gem 'faker'

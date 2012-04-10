@@ -8,47 +8,46 @@ class Navigator < Netzke::Base
   # Include custom stylesheets from navigator/stylesheets/navigator.css
   css_include :navigator
 
-  def default_config
-    super.tap do |c|
-      c[:store] = {
-        root: {
+  def configure
+    super
+    config.store = {
+      root: {
+        expanded: true,
+        children: [{
+          text: 'Projects',
+          leaf: true,
+          icon_cls: 'icon-projects',
+          component: 'ProjectGrid'
+        },{
+          text: 'Users',
+          leaf: true,
+          icon_cls: 'icon-users',
+          component: 'UserGrid'
+        },{
+          text: 'Issues',
+          icon_cls: 'icon-issues',
           expanded: true,
           children: [{
-            text: 'Projects',
+            text: "All",
             leaf: true,
-            icon_cls: 'icon-projects',
-            component: 'ProjectGrid'
+            icon_cls: 'icon-all-issues',
+            component: "IssueGrid"
           },{
-            text: 'Users',
+            text: "Per project",
             leaf: true,
-            icon_cls: 'icon-users',
-            component: 'UserGrid'
+            icon_cls: 'icon-projects-issues',
+            component: "ProjectIssueExplorer"
           },{
-            text: 'Issues',
-            icon_cls: 'icon-issues',
-            expanded: true,
-            children: [{
-              text: "All",
-              leaf: true,
-              icon_cls: 'icon-all-issues',
-              component: "IssueGrid"
-            },{
-              text: "Per project",
-              leaf: true,
-              icon_cls: 'icon-projects-issues',
-              component: "ProjectIssueExplorer"
-            },{
-              text: "Per user",
-              leaf: true,
-              icon_cls: 'icon-users-issues',
-              component: "UserIssueExplorer"
-            }]
+            text: "Per user",
+            leaf: true,
+            icon_cls: 'icon-users-issues',
+            component: "UserIssueExplorer"
           }]
-        }
+        }]
       }
+    }
 
-      c[:bbar] = [:close_all_tabs.action]
-    end
+    config.bbar = [:close_all_tabs.action]
   end
 
   # Handler for this action (onCloseAllTabs) is defined in navigator/javascripts/navigator.js

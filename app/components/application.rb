@@ -4,6 +4,8 @@ class Application < Netzke::Base
   js_property :layout, :border
   js_property :padding, 5
 
+  include Netzke::Basepack::ItemsPersistence
+
   HEADER_HTML = "<b>Yanit</a> | RubyShift 2011 | <a href='http://github.com/skozlov/yanit'>Source code</a> | <a href='http://netzke.org'>netzke.org</a> | <a href='http://twitter.com/nomadcoder'>@nomadcoder</a></b>"
 
   def items

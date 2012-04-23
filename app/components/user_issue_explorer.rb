@@ -5,7 +5,8 @@ class UserIssueExplorer < Netzke::Communitypack::OneToManyExplorer
   association :assignee # association that binds users and issues
 
   container_config  class_name: "UserGrid", # our custom UserGrid as container grid
-                    region: :north # we want it on top
+                    region: :north, # we want it on top
+                    split: true
 
   collection_config class_name: "IssueGrid", override_columns: {
     assignee__name: {included: false} # we don'n need this column in ProjectIssueExplorer

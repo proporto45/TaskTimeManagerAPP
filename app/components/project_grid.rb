@@ -3,7 +3,7 @@ class ProjectGrid < Netzke::Basepack::GridPanel
   model "Project"
 
   # columns customizations (these are optional)
-  override_column :name, flex: 1
+  override_column :name, width: 200
   override_column :description, flex: 1
   override_column :actions, width: 20
   override_column :created_at, read_only: true

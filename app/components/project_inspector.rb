@@ -30,7 +30,11 @@ class ProjectInspector < Netzke::Basepack::BorderLayoutPanel
         container_config: {
           title: "People involved",
           class_name: "UserGrid",
-          scope: lambda { |rel| rel.assignees_for_project(project) },
+          split: true,
+
+          # FIXME
+          #scope: lambda { |rel| rel.assignees_for_project(project) },
+
           columns: [{name: :name, flex: 1}, {name: :email, flex: 1}, {name: :actions, width: 20}],
           bbar: []
         },

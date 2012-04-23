@@ -1,20 +1,20 @@
 PATH
   remote: vendor/gems/netzke-basepack
   specs:
-    netzke-basepack (0.7.4)
-      netzke-core (~> 0.7.4)
+    netzke-basepack (0.8.0)
+      netzke-core (~> 0.8.0)
 
 PATH
   remote: vendor/gems/netzke-communitypack
   specs:
     netzke-communitypack (0.7.0)
-      netzke-basepack (~> 0.7.2)
+      netzke-basepack (~> 0.8.0)
       rails (>= 3.0.0)
 
 PATH
   remote: vendor/gems/netzke-core
   specs:
-    netzke-core (0.7.5)
+    netzke-core (0.8.0)
       activesupport (>= 3.0.0)
 
 GEM

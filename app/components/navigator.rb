@@ -47,7 +47,7 @@ class Navigator < Netzke::Base
       }
     }
 
-    config.bbar = [:close_all_tabs.action]
+    config.bbar = [:close_all_tabs]
   end
 
   # Handler for this action (onCloseAllTabs) is defined in navigator/javascripts/navigator.js

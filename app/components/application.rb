@@ -6,39 +6,37 @@ class Application < Netzke::Base
 
   HEADER_HTML = "<b>Yanit</a> | RubyShift 2011 | <a href='http://github.com/skozlov/yanit'>Source code</a> | <a href='http://netzke.org'>netzke.org</a> | <a href='http://twitter.com/nomadcoder'>@nomadcoder</a></b>"
 
-  items [
-    # Top header
-    {
-      region: :north,
-      height: 22,
-      border: 0,
-      body_style: 'background: transparent; text-align: right;',
-      html: HEADER_HTML
-    },
+  def items
+    [
+      # Top header
+      {
+        region: :north,
+        height: 22,
+        border: 0,
+        body_style: 'background: transparent; text-align: right;',
+        html: HEADER_HTML
+      },
 
-    # Navigator
-    :navigator.component(region: :west, width: 200, split: true, collapsible: true, title: "Navigator"),
+      # Navigator
+      {netzke_component: :navigator, region: :west, width: 200, split: true, collapsible: true, title: "Navigator"},
 
-    # Workspace
-    :workspace.component(region: :center, title: "Workspace")
-  ]
+      # Workspace
+      {netzke_component: :workspace, region: :center, title: "Workspace"}
+    ]
+  end
 
   #
   # Component declarations
   #
 
-  component :navigator do
-    {
-      class_name: "Navigator",
-      workspace_id: [global_id, "workspace"].join("__")
-    }
+  component :navigator do |c|
+    c.klass = Navigator
+    c.workspace_id = [global_id, "workspace"].join("__")
   end
 
-  component :workspace do
-    {
-      class_name: "Netzke::Communitypack::Workspace",
-      dashboard_config: dashboard_config
-    }
+  component :workspace do |c|
+    c.klass = Netzke::Communitypack::Workspace
+    c.dashboard_config = dashboard_config
   end
 
   private

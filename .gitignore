@@ -8,3 +8,5 @@ netzke-core
 netzke-basepack
 netzke-communitypack
 database.yml
+.vimrc
+.powrc

@@ -1,17 +1,3 @@
-/*
-
-This file is part of Ext JS 4
-
-Copyright (c) 2011 Sencha Inc
-
-Contact:  http://www.sencha.com/contact
-
-Commercial Usage
-Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
-
-If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
-
-*/
 Ext.require([
     'Ext.form.*',
     'Ext.data.*',
@@ -201,7 +187,7 @@ Ext.onReady(function() {
             {
                 text   : 'Load test data',
                 handler: function() {
-                    this.up('form').getForm().loadRecord(Ext.ModelManager.create({
+                    this.up('form').getForm().loadRecord(Ext.create('Employee', {
                         'email'    : 'abe@sencha.com',
                         'title'    : 'mr',
                         'firstName': 'Abraham',
@@ -213,7 +199,7 @@ Ext.onReady(function() {
                         'phone-3'  : '4567',
                         'hours'    : 7,
                         'minutes'  : 15
-                    }, 'Employee'));
+                    }));
                 }
             },
             {
@@ -240,4 +226,3 @@ Ext.onReady(function() {
         ]
     });
 });
-

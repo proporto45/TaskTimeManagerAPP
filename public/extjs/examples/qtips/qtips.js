@@ -1,20 +1,7 @@
-/*
-
-This file is part of Ext JS 4
-
-Copyright (c) 2011 Sencha Inc
-
-Contact:  http://www.sencha.com/contact
-
-Commercial Usage
-Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
-
-If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
-
-*/
 Ext.require([
     'Ext.tip.*',
-    'Ext.Button'
+    'Ext.Button',
+    'Ext.window.MessageBox'
 ]);
 
 Ext.onReady(function() {
@@ -22,7 +9,7 @@ Ext.onReady(function() {
     var defaultButtonConfig = {
         scale: 'medium',
         style: {
-            marginRight: '10px'
+            "margin-right": '10px'
         }
     };
     
@@ -95,7 +82,7 @@ Ext.onReady(function() {
             contentEl: 'content-tip', // load content from the page
             listeners: {
                 'render': function(){
-                    this.header.on('click', function(e){
+                    this.header.on('click', function(header, e){
                         e.stopEvent();
                         Ext.Msg.alert('Link', 'Link to something interesting.');
                         Ext.getCmp('content-anchor-tip').hide();
@@ -120,4 +107,3 @@ Ext.onReady(function() {
 
     Ext.QuickTips.init();
 });
-

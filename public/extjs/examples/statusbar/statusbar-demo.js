@@ -1,17 +1,3 @@
-/*
-
-This file is part of Ext JS 4
-
-Copyright (c) 2011 Sencha Inc
-
-Contact:  http://www.sencha.com/contact
-
-Commercial Usage
-Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
-
-If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
-
-*/
 Ext.Loader.setConfig({
     enabled: true
 });
@@ -55,7 +41,7 @@ Ext.onReady(function(){
         renderTo: 'basic',
         width: 550,
         height: 100,
-        bodyStyle: 'padding:10px;',
+        bodyPadding: 10,
         items:[{
             xtype: 'button',
             id: 'basic-button',
@@ -119,7 +105,7 @@ Ext.onReady(function(){
         renderTo: 'right-aligned',
         width: 550,
         height: 100,
-        bodyStyle: 'padding:10px;',
+        bodyPadding: 10,
         items:[{
             xtype: 'button',
             id: 'right-button',
@@ -146,7 +132,7 @@ Ext.onReady(function(){
         height: 150,
         modal: true,
         closeAction: 'hide',
-        bodyStyle: 'padding:10px;',
+        bodyPadding: 10,
         items:[{
             xtype: 'button',
             id: 'win-button',
@@ -197,8 +183,7 @@ Ext.onReady(function(){
         title: 'Ext Word Processor',
         renderTo: 'word-proc',
         width: 500,
-        autoHeight: true,
-        bodyStyle: 'padding:5px;',
+        bodyPadding: 5,
         layout: 'fit',
         bbar: Ext.create('Ext.ux.StatusBar', {
             id: 'word-status',
@@ -270,4 +255,3 @@ Ext.onReady(function(){
     }, null, {buffer: 1});
 
 });
-

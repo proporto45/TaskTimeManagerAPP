@@ -1,17 +1,3 @@
-/*
-
-This file is part of Ext JS 4
-
-Copyright (c) 2011 Sencha Inc
-
-Contact:  http://www.sencha.com/contact
-
-Commercial Usage
-Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
-
-If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
-
-*/
 /**
  * @class Ext.multisort.Panel
  * @extends Ext.panel.Panel
@@ -34,9 +20,7 @@ Ext.define('Ext.multisort.Panel', {
             plugins : Ext.create('Ext.ux.BoxReorderer', {
                 listeners: {
                     scope: this,
-                    drop: function() {
-                        this.down('dataview').store.sort(this.getSorters());
-                    }
+                    drop: this.updateStoreSorters
                 }
             }),
             defaults: {
@@ -54,7 +38,7 @@ Ext.define('Ext.multisort.Panel', {
                 text : 'Type',
                 dataIndex: 'type'
             }, {
-               xtype: 'sortbutton',
+                xtype: 'sortbutton',
                 text : 'Name',
                 dataIndex: 'name'
             }]
@@ -115,8 +99,9 @@ Ext.define('Ext.multisort.Panel', {
      * Updates the DataView's Store's sorters based on the current Toolbar button configuration
      */
     updateStoreSorters: function() {
-        //FIXME: shouldn't have to make the first call
-        this.down('dataview').store.sort();
-        this.down('dataview').store.sort(this.getSorters());
+        var sorters = this.getSorters(),
+            view = this.down('dataview');
+
+        view.store.sort(sorters);
     }
 });

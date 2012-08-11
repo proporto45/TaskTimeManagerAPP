@@ -1,17 +1,3 @@
-/*
-
-This file is part of Ext JS 4
-
-Copyright (c) 2011 Sencha Inc
-
-Contact:  http://www.sencha.com/contact
-
-Commercial Usage
-Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
-
-If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
-
-*/
 Ext.require([
     '*'
 ]);
@@ -531,12 +517,12 @@ Ext.onReady(function() {
             
         } // end for loop
         
+        // destroy the existing chart
+        existingRadarChart.destroy();
         // create the new chart using the dynamic series we just made
         var newRadarChart = new App.PerformanceRadar({series:dynamicSeries});
         // mask the panel while we switch out charts
         reportsPanel.getEl().mask('updating chart...');
-        // destroy the existing chart
-        existingRadarChart.destroy();
         // display the new one
         reportsPanel.add(newRadarChart);
         // un mask the reports panel
@@ -549,7 +535,7 @@ Ext.onReady(function() {
         var items = [];
                
         for(var index = 0; index < employees.length; index++) {
-            var templateData = Ext.merge(employees[index].data, reviewStore.findRecord('employee_id', employees[index].get('id')).data);
+            var templateData = Ext.applyIf(employees[index].data, reviewStore.findRecord('employee_id', employees[index].get('id')).data);
             var employeePanel = new App.EmployeeDetail({
                 title:employees[index].get('first_name') + ' ' + employees[index].get('last_name'),
                 data:templateData // combined employee and latest review dataTransfer

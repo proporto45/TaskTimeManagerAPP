@@ -1,17 +1,3 @@
-/*
-
-This file is part of Ext JS 4
-
-Copyright (c) 2011 Sencha Inc
-
-Contact:  http://www.sencha.com/contact
-
-Commercial Usage
-Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
-
-If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
-
-*/
 Ext.require([
     'Ext.direct.*',
     'Ext.form.Panel',
@@ -31,23 +17,27 @@ Ext.onReady(function(){
             xtype: 'textfield',
             fieldLabel: 'First Name',
             name: 'firstName',
-            value: 'Evan'
+            value: 'Evan',
+            allowBlank: false
         }, {
             xtype: 'textfield',
             fieldLabel: 'Last Name',
             name: 'lastName',
-            value: 'Trimboli'
+            value: 'Trimboli',
+            allowBlank: false
         }, {
             xtype: 'numberfield',
             fieldLabel: 'Age',
             name: 'age',
-            value: 25
+            value: 25,
+            allowBlank: false
         }],
         dockedItems: [{
             dock: 'bottom',
             ui: 'footer',
             xtype: 'toolbar',
             items: ['->', {
+                formBind: true,
                 text: 'Send',
                 handler: function(){
                     var values = form.getForm().getValues();
@@ -59,4 +49,3 @@ Ext.onReady(function(){
         }]  
     });
 });
-

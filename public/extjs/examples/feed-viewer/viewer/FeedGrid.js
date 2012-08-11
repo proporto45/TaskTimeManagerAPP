@@ -1,17 +1,3 @@
-/*
-
-This file is part of Ext JS 4
-
-Copyright (c) 2011 Sencha Inc
-
-Contact:  http://www.sencha.com/contact
-
-Commercial Usage
-Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
-
-If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
-
-*/
 Ext.define('FeedViewer.FeedGrid', {
     extend: 'Ext.grid.Panel',
 
@@ -49,6 +35,10 @@ Ext.define('FeedViewer.FeedGrid', {
                     reader: {
                         type: 'xml',
                         record: 'item'
+                    },
+                    listeners: {
+                        exception: this.onProxyException,
+                        scope: this
                     }
                 },
                 listeners: {
@@ -119,8 +109,21 @@ Ext.define('FeedViewer.FeedGrid', {
      * Listens for the store loading
      * @private
      */
-    onLoad: function(){
-        this.getSelectionModel().select(0);
+    onLoad: function(store, records, success) {
+        if (this.getStore().getCount()) {
+            this.getSelectionModel().select(0);
+        }
+    },
+
+    /**
+     * Listen for proxy eerrors.
+     */
+    onProxyException: function(proxy, response, operation) {
+        Ext.Msg.alert("Error with data from server", operation.error);
+        this.view.el.update('');
+        
+        // Update the detail view with a dummy empty record
+        this.fireEvent('select', this, {data:{}});
     },
 
     /**
@@ -163,4 +166,3 @@ Ext.define('FeedViewer.FeedGrid', {
         return Ext.Date.format(date, 'Y/m/d g:i a');
     }
 });
-

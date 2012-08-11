@@ -1,34 +1,9 @@
-/*
-
-This file is part of Ext JS 4
-
-Copyright (c) 2011 Sencha Inc
-
-Contact:  http://www.sencha.com/contact
-
-Commercial Usage
-Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
-
-If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
-
-*/
 Ext.require('Ext.chart.*');
-Ext.require('Ext.layout.container.Fit');
+Ext.require(['Ext.layout.container.Fit', 'Ext.window.MessageBox']);
 
 Ext.onReady(function () {
-    var panel1 = Ext.create('widget.panel', {
-        width: 800,
-        height: 400,
-        title: 'Column Chart with Reload - Hits per Month',
-        renderTo: Ext.getBody(),
-        layout: 'fit',
-        tbar: [{
-            text: 'Reload Data',
-            handler: function() {
-                store1.loadData(generateData());
-            }
-        }],
-        items: {
+
+    var chart = Ext.create('Ext.chart.Chart', {
             xtype: 'chart',
             animate: true,
             shadow: true,
@@ -39,7 +14,8 @@ Ext.onReady(function () {
                 fields: ['data1'],
                 title: 'Hits',
                 grid: true,
-                minimum: 0
+                minimum: 0,
+                maximum: 100
             }, {
                 type: 'Category',
                 position: 'bottom',
@@ -62,14 +38,40 @@ Ext.onReady(function () {
                     width: 74,
                     height: 38,
                     renderer: function(storeItem, item) {
-                        this.setTitle(storeItem.get('name') + '<br />' + storeItem.get('data1'));
+                        this.setTitle(storeItem.get('name'));
+                        this.update(storeItem.get('data1'));
                     }
                 },
                 style: {
                     fill: '#38B8BF'
                 }
             }]
-        }
+        });
+
+
+    var panel1 = Ext.create('widget.panel', {
+        width: 800,
+        height: 400,
+        title: 'Column Chart with Reload - Hits per Month',
+        renderTo: Ext.getBody(),
+        layout: 'fit',
+        tbar: [{
+            text: 'Save Chart',
+            handler: function() {
+                Ext.MessageBox.confirm('Confirm Download', 'Would you like to download the chart as an image?', function(choice){
+                    if(choice == 'yes'){
+                        chart.save({
+                            type: 'image/png'
+                        });
+                    }
+                });
+            }
+        }, {
+            text: 'Reload Data',
+            handler: function() {
+                store1.loadData(generateData());
+            }
+        }],
+        items: chart
     });
 });
-

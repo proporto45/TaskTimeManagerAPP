@@ -1,17 +1,3 @@
-/*
-
-This file is part of Ext JS 4
-
-Copyright (c) 2011 Sencha Inc
-
-Contact:  http://www.sencha.com/contact
-
-Commercial Usage
-Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
-
-If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
-
-*/
 Ext4.onReady(function() {
     var memoryArray,
         processArray,
@@ -69,7 +55,9 @@ Ext4.onReady(function() {
         data: generateData(processArray)
     });
 
-    cpuLoadStore = Ext4.create('store.json', { fields: ['core1', 'core2'] });
+    cpuLoadStore = Ext4.create('store.json', { 
+      fields: ['core1', 'core2', 'time'] 
+    });
 
     data = [];
 
@@ -129,7 +117,8 @@ Ext4.onReady(function() {
         shadow: true,
 
         legend: {
-            position: 'right'
+            position: 'right',
+            update: false
         },
         insetPadding: 40,
         theme: 'Memory:gradients',
@@ -256,7 +245,8 @@ Ext4.onReady(function() {
         animate: false,
         store: cpuLoadStore,
         legend: {
-            position: 'bottom'
+            position: 'bottom',
+            update: false
         },
         axes: [{
             type: 'Numeric',
@@ -279,7 +269,7 @@ Ext4.onReady(function() {
             lineWidth: 4,
             showMarkers: false,
             fill: true,
-            axis: 'right',
+            axis: ['left'],
             xField: 'time',
             yField: 'core1',
             style: {
@@ -295,7 +285,8 @@ Ext4.onReady(function() {
         animate: false,
         store: cpuLoadStore,
         legend: {
-            position: 'bottom'
+            position: 'bottom',
+            update: false
         },
         axes: [{
             type: 'Numeric',
@@ -318,7 +309,7 @@ Ext4.onReady(function() {
             lineWidth: 4,
             showMarkers: false,
             fill: true,
-            axis: 'right',
+            axis: ['left'],
             xField: 'time',
             yField: 'core2',
             style: {
@@ -327,7 +318,7 @@ Ext4.onReady(function() {
         }]
     };
 
-    win = Ext4.createWidget('window', {
+    win = Ext4.widget('window', {
         x: 90,
         y: 50,
         width: 800,
@@ -395,4 +386,3 @@ Ext4.onReady(function() {
         win.show();
     });
 });
-

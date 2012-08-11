@@ -1,22 +1,8 @@
-/*
-
-This file is part of Ext JS 4
-
-Copyright (c) 2011 Sencha Inc
-
-Contact:  http://www.sencha.com/contact
-
-Commercial Usage
-Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
-
-If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
-
-*/
 Ext.require('Ext.tab.*');
 
 Ext.onReady(function(){
     // basic tabs 1, built from existing content
-    var tabs = Ext.createWidget('tabpanel', {
+    var tabs = Ext.widget('tabpanel', {
         renderTo: 'tabs1',
         width: 450,
         activeTab: 0,
@@ -34,7 +20,7 @@ Ext.onReady(function(){
     });
     
     // second tabs built from JS
-    var tabs2 = Ext.createWidget('tabpanel', {
+    var tabs2 = Ext.widget('tabpanel', {
         renderTo: document.body,
         activeTab: 0,
         width: 600,
@@ -71,7 +57,9 @@ Ext.onReady(function(){
                 title: 'Event Tab',
                 listeners: {
                     activate: function(tab){
-                        alert(tab.title + ' was activated.');
+                        setTimeout(function() {
+                            alert(tab.title + ' was activated.');
+                        }, 1);
                     }
                 },
                 html: "I am tab 4's content. I also have an event listener attached."

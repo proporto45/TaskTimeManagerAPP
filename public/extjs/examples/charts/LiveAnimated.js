@@ -1,17 +1,3 @@
-/*
-
-This file is part of Ext JS 4
-
-Copyright (c) 2011 Sencha Inc
-
-Contact:  http://www.sencha.com/contact
-
-Commercial Usage
-Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
-
-If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
-
-*/
 Ext.require('Ext.chart.*');
 
 Ext.onReady(function () {
@@ -77,6 +63,8 @@ Ext.onReady(function () {
     Ext.create('Ext.Window', {
         width: 800,
         height: 600,
+        minHeight: 400,
+        minWidth: 550,
         hidden: false,
         maximizable: true,
         title: 'Live Animated Chart',
@@ -121,7 +109,7 @@ Ext.onReady(function () {
             series: [{
                 type: 'line',
                 smooth: false,
-                axis: 'left',
+                axis: ['left', 'bottom'],
                 xField: 'date',
                 yField: 'visits',
                 label: {
@@ -136,7 +124,7 @@ Ext.onReady(function () {
                 }
             },{
                 type: 'line',
-                axis: 'left',
+                axis: ['left', 'bottom'],
                 smooth: false,
                 xField: 'date',
                 yField: 'views',
@@ -152,7 +140,7 @@ Ext.onReady(function () {
                 }
             },{
                 type: 'line',
-                axis: 'left',
+                axis: ['left', 'bottom'],
                 smooth: false,
                 xField: 'date',
                 yField: 'users',
@@ -172,4 +160,3 @@ Ext.onReady(function () {
     chart = Ext.getCmp('chartCmp');
     var timeAxis = chart.axes.get(1);
 });
-

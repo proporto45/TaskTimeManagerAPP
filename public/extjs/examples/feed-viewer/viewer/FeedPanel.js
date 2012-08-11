@@ -1,17 +1,3 @@
-/*
-
-This file is part of Ext JS 4
-
-Copyright (c) 2011 Sencha Inc
-
-Contact:  http://www.sencha.com/contact
-
-Commercial Usage
-Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
-
-If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
-
-*/
 /**
  * @class FeedViewer.FeedPanel
  * @extends Ext.panel.Panel
@@ -59,13 +45,6 @@ Ext.define('FeedViewer.FeedPanel', {
         this.callParent(arguments);
     },
 
-    // template method
-    afterRender: function(){
-        this.callParent(arguments);
-        var view = this.view;
-        view.getSelectionModel().select(view.store.first());
-    },
-
     /**
      * Create the DataView to be used for the feed list.
      * @private
@@ -86,7 +65,8 @@ Ext.define('FeedViewer.FeedPanel', {
             },
             listeners: {
                 scope: this,
-                contextmenu: this.onContextMenu
+                contextmenu: this.onContextMenu,
+                viewready: this.onViewReady
             },
             trackOver: true,
             cls: 'feed-list',
@@ -95,6 +75,10 @@ Ext.define('FeedViewer.FeedPanel', {
             tpl: '<tpl for="."><div class="feed-list-item">{title}</div></tpl>'
         });
         return this.view;
+    },
+
+    onViewReady: function(){
+        this.view.getSelectionModel().select(this.view.store.first());
     },
 
     /**
@@ -224,12 +208,13 @@ Ext.define('FeedViewer.FeedPanel', {
      * @private
      */
     onAddFeedClick: function(){
-        var win = Ext.create('widget.feedwindow', {
+        var win = this.addFeedWindow || (this.addFeedWindow = Ext.create('widget.feedwindow', {
             listeners: {
                 scope: this,
                 feedvalid: this.onFeedValid
             }
-        });
+        }));
+        win.form.getForm().reset();
         win.show();
     },
 
@@ -280,4 +265,3 @@ Ext.define('FeedViewer.FeedPanel', {
         this.menu.destroy();
     }
 });
-

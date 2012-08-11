@@ -1,48 +1,42 @@
-/*
+Ext.Loader.setConfig({
+    enabled: true
+});
+Ext.Loader.setPath('Ext.ux', '../ux');
 
-This file is part of Ext JS 4
+Ext.require([
+    'Ext.layout.container.Table',
+    'Ext.ux.Spotlight'
+]);
 
-Copyright (c) 2011 Sencha Inc
+//Create a DemoPanel which is the base for each panel in the example
+Ext.define('DemoPanel', {
+    extend: 'Ext.panel.Panel',
 
-Contact:  http://www.sencha.com/contact
+    title: 'Demo Panel',
+    frame: true,
+    width: 200,
+    height: 150,
+    html: 'Some panel content goes here!',
+    bodyPadding: 5,
 
-Commercial Usage
-Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
+    /**
+     * Custom method which toggles a Ext.Button for the current panel on/off depending on the only argument
+     */
+    toggle: function(on) {
+        var btns = this.dockedItems.last(),
+            btn = btns.items.first();
 
-If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
-
-*/
-Ext.require(['Ext.panel.Panel', 'Ext.layout.container.Table']);
+        if (btn) {
+            btn.setDisabled(!on);
+        }
+    }
+});
 
 Ext.onReady(function() {
     //Create the spotlight component
     var spot = Ext.create('Ext.ux.Spotlight', {
         easing: 'easeOut',
         duration: 300
-    });
-
-    //Create a DemoPanel which is the base for each panel in the example
-    Ext.define('DemoPanel', {
-        extend: 'Ext.panel.Panel',
-
-        title: 'Demo Panel',
-        frame: true,
-        width: 200,
-        height: 150,
-        html: 'Some panel content goes here!',
-        bodyStyle: 'padding:5px;',
-
-        /**
-         * Custom method which toggles a Ext.Button for the current panel on/off depending on the only argument
-         */
-        toggle: function(on) {
-            var btns = this.dockedItems.items[1],
-                btn = btns.items.items[1];
-
-            if (btn) {
-                btn.setDisabled(!on);
-            }
-        }
     });
 
     var p1, p2, p3;
@@ -62,14 +56,13 @@ Ext.onReady(function() {
         p3.toggle(id == p3.id);
     };
 
-    Ext.createWidget('panel', {
+    Ext.widget('panel', {
         renderTo: Ext.getBody(),
-
-        layout: 'table',
         id: 'demo-ct',
         border: false,
 
-        layoutConfig: {
+        layout: {
+            type: 'table',
             columns: 3
         },
 
@@ -113,4 +106,3 @@ Ext.onReady(function() {
         }
     });
 });
-

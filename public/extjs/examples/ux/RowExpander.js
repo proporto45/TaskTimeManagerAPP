@@ -1,17 +1,3 @@
-/*
-
-This file is part of Ext JS 4
-
-Copyright (c) 2011 Sencha Inc
-
-Contact:  http://www.sencha.com/contact
-
-Commercial Usage
-Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
-
-If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
-
-*/
 // feature idea to enable Ajax loading and then the content
 // cache would actually make sense. Should we dictate that they use
 // data or support raw html as well?
@@ -27,6 +13,12 @@ If you are unsure which license is appropriate for your use, please contact the 
  */
 Ext.define('Ext.ux.RowExpander', {
     extend: 'Ext.AbstractPlugin',
+
+    requires: [
+        'Ext.grid.feature.RowBody',
+        'Ext.grid.feature.RowWrap'
+    ],
+
     alias: 'plugin.rowexpander',
 
     rowBodyTpl: null,
@@ -68,16 +60,16 @@ Ext.define('Ext.ux.RowExpander', {
     /**
      * @event expandbody
      * <b<Fired through the grid's View</b>
-     * @param {HtmlElement} rowNode The &lt;tr> element which owns the expanded row.
+     * @param {HTMLElement} rowNode The &lt;tr> element which owns the expanded row.
      * @param {Ext.data.Model} record The record providing the data.
-     * @param {HtmlElement} expandRow The &lt;tr> element containing the expanded data.
+     * @param {HTMLElement} expandRow The &lt;tr> element containing the expanded data.
      */
     /**
      * @event collapsebody
      * <b<Fired through the grid's View.</b>
-     * @param {HtmlElement} rowNode The &lt;tr> element which owns the expanded row.
+     * @param {HTMLElement} rowNode The &lt;tr> element which owns the expanded row.
      * @param {Ext.data.Model} record The record providing the data.
-     * @param {HtmlElement} expandRow The &lt;tr> element containing the expanded data.
+     * @param {HTMLElement} expandRow The &lt;tr> element containing the expanded data.
      */
 
     constructor: function() {
@@ -112,8 +104,26 @@ Ext.define('Ext.ux.RowExpander', {
             grid.features = features;
         }
 
-        grid.columns.unshift(this.getHeaderConfig());
-        grid.on('afterlayout', this.onGridAfterLayout, this, {single: true});
+        // NOTE: features have to be added before init (before Table.initComponent)
+    },
+
+    init: function(grid) {
+        this.callParent(arguments);
+        this.grid = grid;
+        // Columns have to be added in init (after columns has been used to create the
+        // headerCt). Otherwise, shared column configs get corrupted, e.g., if put in the
+        // prototype.
+        this.addExpander();
+        grid.on('render', this.bindView, this, {single: true});
+        grid.on('reconfigure', this.onReconfigure, this);
+    },
+    
+    onReconfigure: function(){
+        this.addExpander();
+    },
+    
+    addExpander: function(){
+        this.grid.headerCt.insert(0, this.getHeaderConfig());
     },
 
     getHeaderId: function() {
@@ -137,16 +147,14 @@ Ext.define('Ext.ux.RowExpander', {
         return o;
     },
 
-    onGridAfterLayout: function() {
-        var grid = this.getCmp(),
-            view, viewEl;
+    bindView: function() {
+        var view = this.getCmp().getView(),
+            viewEl;
 
-        if (!grid.hasView) {
-            this.getCmp().on('afterlayout', this.onGridAfterLayout, this, {single: true});
+        if (!view.rendered) {
+            view.on('render', this.bindView, this, {single: true});
         } else {
-            view = grid.down('gridview');
             viewEl = view.getEl();
-
             if (this.expandOnEnter) {
                 this.keyNav = Ext.create('Ext.KeyNav', viewEl, {
                     'enter' : this.onEnter,
@@ -176,27 +184,29 @@ Ext.define('Ext.ux.RowExpander', {
     },
 
     toggleRow: function(rowIdx) {
-        var rowNode = this.view.getNode(rowIdx),
+        var view = this.view,
+            rowNode = view.getNode(rowIdx),
             row = Ext.get(rowNode),
             nextBd = Ext.get(row).down(this.rowBodyTrSelector),
-            record = this.view.getRecord(rowNode);
+            record = view.getRecord(rowNode),
+            grid = this.getCmp();
 
         if (row.hasCls(this.rowCollapsedCls)) {
             row.removeCls(this.rowCollapsedCls);
             nextBd.removeCls(this.rowBodyHiddenCls);
             this.recordsExpanded[record.internalId] = true;
-            this.view.fireEvent('expandbody', rowNode, record, nextBd.dom);
+            view.refreshSize();
+            view.fireEvent('expandbody', rowNode, record, nextBd.dom);
         } else {
             row.addCls(this.rowCollapsedCls);
             nextBd.addCls(this.rowBodyHiddenCls);
             this.recordsExpanded[record.internalId] = false;
-            this.view.fireEvent('collapsebody', rowNode, record, nextBd.dom);
+            view.refreshSize();
+            view.fireEvent('collapsebody', rowNode, record, nextBd.dom);
         }
-        this.view.up('gridpanel').invalidateScroller();
     },
 
     onDblClick: function(view, cell, rowIdx, cellIndex, e) {
-
         this.toggleRow(rowIdx);
     },
 
@@ -209,7 +219,7 @@ Ext.define('Ext.ux.RowExpander', {
             id: this.getHeaderId(),
             width: 24,
             sortable: false,
-            fixed: true,
+            resizable: false,
             draggable: false,
             hideable: false,
             menuDisabled: true,
@@ -229,4 +239,3 @@ Ext.define('Ext.ux.RowExpander', {
         };
     }
 });
-

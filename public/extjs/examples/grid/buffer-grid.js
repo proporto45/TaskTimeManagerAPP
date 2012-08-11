@@ -1,17 +1,3 @@
-/*
-
-This file is part of Ext JS 4
-
-Copyright (c) 2011 Sencha Inc
-
-Contact:  http://www.sencha.com/contact
-
-Commercial Usage
-Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
-
-If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
-
-*/
 Ext.Loader.setConfig({enabled: true});
 
 Ext.Loader.setPath('Ext.ux', '../ux/');
@@ -21,6 +7,15 @@ Ext.require([
     'Ext.util.*',
     'Ext.grid.PagingScroller'
 ]);
+
+Ext.define('Employee', {
+    extend: 'Ext.data.Model',
+    fields: [
+       {name: 'rating', type: 'int'},
+       {name: 'salary', type: 'float'},
+       {name: 'name'}
+    ]
+});
 
 Ext.onReady(function(){
     /**
@@ -54,44 +49,31 @@ Ext.onReady(function(){
         return data;
     }
 
-    Ext.define('Employee', {
-        extend: 'Ext.data.Model',
-        fields: [
-           {name: 'rating', type: 'int'},
-           {name: 'salary', type: 'float'},
-           {name: 'name'}
-        ]
-    });
-
-
-    // create the Data Store
+    // Create the Data Store.
+    // Because it is buffered, the automatic load will be directed
+    // through the prefetch mechanism, and be read through the page cache
     var store = Ext.create('Ext.data.Store', {
         id: 'store',
-        pageSize: 50,
         // allow the grid to interact with the paging scroller by buffering
         buffered: true,
-        // never purge any data, we prefetch all up front
-        purgePageCount: 0,
-        model: 'ForumThread',
+        // Configure the store with a single page of records which will be cached
+        pageSize: 5000,
+        data: createFakeData(5000),
+        model: 'Employee',
         proxy: {
             type: 'memory'
         }
     });
-
-
 
     var grid = Ext.create('Ext.grid.Panel', {
         width: 700,
         height: 500,
         title: 'Bufffered Grid of 5,000 random records',
         store: store,
-        verticalScroller: {
-            xtype: 'paginggridscroller',
-            activePrefetch: false
-        },
         loadMask: true,
-        disableSelection: true,
-        invalidateScrollerOnRefresh: false,
+        selModel: {
+            pruneRemoved: false
+        },
         viewConfig: {
             trackOver: false
         },
@@ -120,18 +102,4 @@ Ext.onReady(function(){
         }],
         renderTo: Ext.getBody()
     });
-
-    var data = createFakeData(5000),
-        ln = data.length,
-        records = [],
-        i = 0;
-    for (; i < ln; i++) {
-        records.push(Ext.ModelManager.create(data[i], 'Employee'));
-    }
-    store.cacheRecords(records);
-
-    store.guaranteeRange(0, 49);
 });
-
-
-

@@ -1,17 +1,3 @@
-/*
-
-This file is part of Ext JS 4
-
-Copyright (c) 2011 Sencha Inc
-
-Contact:  http://www.sencha.com/contact
-
-Commercial Usage
-Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
-
-If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
-
-*/
 /*!
 * Ext JS Library 4.0
 * Copyright(c) 2006-2011 Sencha Inc.
@@ -31,9 +17,7 @@ Ext.define('Ext.ux.desktop.Video', {
     extend: 'Ext.panel.Panel',
 
     alias: 'widget.video',
-
-    width: '100%',
-    height: '100%',
+    layout: 'fit',
     autoplay: false,
     controls: true,
     bodyStyle: 'background-color:#000;color:#fff',
@@ -61,7 +45,7 @@ Ext.define('Ext.ux.desktop.Video', {
 
                 if (Ext.isIE) {
                     fallback += ', ' + chrome +
-                        ' or <a href="http://www.google.com/chromeframe">Chrome Frame for IE</a>.';
+                        ' or <a href="http://www.apple.com/safari/">Safari</a>.';
                 } else {
                     fallback += ' or ' + chrome + '.';
                 }
@@ -114,13 +98,14 @@ Ext.define('Ext.ux.desktop.Video', {
         this.supported = (el && el.tagName.toLowerCase() == 'video');
     },
 
-    doComponentLayout : function() {
+    afterComponentLayout : function() {
         var me = this;
 
         me.callParent(arguments);
 
-        if (me.video)
+        if (me.video) {
             me.video.setSize(me.body.getSize());
+        }
     },
 
     onDestroy: function () {
@@ -137,4 +122,3 @@ Ext.define('Ext.ux.desktop.Video', {
         this.callParent();
     }
 });
-

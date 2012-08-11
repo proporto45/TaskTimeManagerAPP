@@ -1,17 +1,3 @@
-/*
-
-This file is part of Ext JS 4
-
-Copyright (c) 2011 Sencha Inc
-
-Contact:  http://www.sencha.com/contact
-
-Commercial Usage
-Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
-
-If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
-
-*/
 Ext.require([
     'Ext.grid.*',
     'Ext.window.Window',
@@ -35,8 +21,10 @@ Ext.onReady(function(){
     Ext.state.Manager.setProvider(Ext.create('Ext.state.CookieProvider'));
 
     Ext.create('Ext.container.Viewport', {
-        layout: 'border',
-        padding: '5',
+        layout: {
+            type: 'border',
+            padding: '5'
+        },
         items: [{
             region: 'north',
             styleHtmlContent: true,
@@ -65,6 +53,7 @@ Ext.onReady(function(){
                             title: 'State Window',
                             maximizable: true,
                             stateId: 'stateWindowExample',
+                            stateful: true,
                             styleHtmlContent: true,
                             bodyPadding: 5,
                             html: [
@@ -91,6 +80,7 @@ Ext.onReady(function(){
             title: 'Collapse/Width Panel',
             width: 200,
             stateId: 'statePanelExample',
+            stateful: true,
             split: true,
             collapsible: true,
             html: [
@@ -102,6 +92,7 @@ Ext.onReady(function(){
             ].join('')
         }, {
             region: 'center',
+            stateful: true,
             stateId: 'stateGridExample',
             xtype: 'grid',
             store: Ext.create('Ext.data.Store', {
@@ -150,4 +141,3 @@ Ext.onReady(function(){
         }]
     });
 });
-

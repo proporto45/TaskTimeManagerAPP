@@ -1,17 +1,3 @@
-/*
-
-This file is part of Ext JS 4
-
-Copyright (c) 2011 Sencha Inc
-
-Contact:  http://www.sencha.com/contact
-
-Commercial Usage
-Licensees holding valid commercial licenses may use this file in accordance with the Commercial Software License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Sencha.
-
-If you are unsure which license is appropriate for your use, please contact the sales department at http://www.sencha.com/contact.
-
-*/
 Ext.Loader.setConfig({
     enabled: true
 });
@@ -49,10 +35,7 @@ Ext.onReady(function(){
             data = [],
             s = new Date(2007, 0, 1),
             now = new Date(),
-
-            getRandomInt = function(min, max) {
-                return Math.floor(Math.random() * (max - min + 1)) + min;
-            },
+            getRandomInt = Ext.Number.randomInt,
 
             generateName = function() {
                 var name = firsts[getRandomInt(0, firstLen - 1)] + ' ' + lasts[getRandomInt(0, lastLen - 1)];
@@ -126,7 +109,7 @@ Ext.onReady(function(){
             header: 'Start Date',
             dataIndex: 'start',
             width: 90,
-            field: {
+            editor: {
                 xtype: 'datefield',
                 allowBlank: false,
                 format: 'm/d/Y',
@@ -167,14 +150,14 @@ Ext.onReady(function(){
             handler : function() {
                 rowEditing.cancelEdit();
 
-                // Create a record instance through the ModelManager
-                var r = Ext.ModelManager.create({
+                // Create a model instance
+                var r = Ext.create('Employee', {
                     name: 'New Guy',
                     email: 'new@sencha-test.com',
                     start: new Date(),
                     salary: 50000,
                     active: true
-                }, 'Employee');
+                });
 
                 store.insert(0, r);
                 rowEditing.startEdit(0, 0);
@@ -201,4 +184,3 @@ Ext.onReady(function(){
         }
     });
 });
-

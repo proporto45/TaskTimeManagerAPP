@@ -2,11 +2,26 @@
 class UserGrid < Netzke::Basepack::GridPanel
   model "User"
 
-  override_column :name, width: 200, flex: 1
-  override_column :email, width: 200
-  override_column :actions, width: 20
-  override_column :created_at, read_only: true
-  override_column :updated_at, read_only: true
+  column :name do |c|
+    c.width = 200
+    c.flex = 1
+  end
+
+  column :email do |c|
+    c.width = 200
+  end
+
+  column :actions do |c|
+    c.width = 20
+  end
+
+  column :created_at do |c|
+    c.read_only = true
+  end
+
+  column :updated_at do |c|
+    c.read_only = true
+  end
 
   include Netzke::Yanit::Inspectable
 end

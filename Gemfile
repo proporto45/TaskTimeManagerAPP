@@ -1,9 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.3'
-
-# Bundle edge Rails instead:
-# gem 'rails',     :git => 'git://github.com/rails/rails.git'
+gem 'rails', '3.2.7'
 
 gem 'sqlite3'
 
@@ -11,8 +8,8 @@ gem 'sqlite3'
 #gem 'netzke-basepack'
 #gem 'netzke-communitypack'
 
-gem 'netzke-core',        :path => File.expand_path('../vendor/gems/netzke-core', __FILE__)
-gem 'netzke-basepack',        :path => File.expand_path('../vendor/gems/netzke-basepack', __FILE__)
+gem 'netzke-core',          :path => File.expand_path('../vendor/gems/netzke-core', __FILE__)
+gem 'netzke-basepack',      :path => File.expand_path('../vendor/gems/netzke-basepack', __FILE__)
 gem 'netzke-communitypack', :path => File.expand_path('../vendor/gems/netzke-communitypack', __FILE__)
 
 

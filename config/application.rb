@@ -46,7 +46,7 @@ module Yanit
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
-    config.netzke.basepack.grid_panel.default_instance_config.persistence = true
-    config.netzke.basepack.border_layout_panel.default_instance_config.persistence = true
+    # config.netzke.basepack.grid_panel.default_instance_config.persistence = true
+    # config.netzke.basepack.border_layout_panel.default_instance_config.persistence = true
   end
 end

@@ -1,16 +1,19 @@
 # This component drows a tree that represents a menu. Clicking on a tree node makes a specific component to open in the Workspace component, the id to which must be passed as the :workspace_id parameter (see the Application component).
 class Navigator < Netzke::Base
-  js_base_class "Ext.tree.Panel"
+  js_configure do |c|
+    c.extend = "Ext.tree.Panel"
 
-  # Mix in the javascript object on class level from navigator/javascripts/navigator.js
-  js_mixin
+    # Mix in the javascript object on class level from navigator/javascripts/navigator.js
+    c.mixin
+  end
 
+  css_configure do |c|
   # Include custom stylesheets from navigator/stylesheets/navigator.css
-  css_include :navigator
+    c.include
+  end
 
-  def configure
-    super
-    config.store = {
+  def configure(c)
+    c.store = {
       root: {
         expanded: true,
         children: [{
@@ -47,7 +50,9 @@ class Navigator < Netzke::Base
       }
     }
 
-    config.bbar = [:close_all_tabs]
+    c.bbar = [:close_all_tabs]
+
+    super
   end
 
   # Handler for this action (onCloseAllTabs) is defined in navigator/javascripts/navigator.js

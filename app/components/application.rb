@@ -1,15 +1,22 @@
 # Our top-level Application component
 class Application < Netzke::Base
-  js_base_class "Ext.container.Viewport"
-  js_property :layout, :border
-  js_property :padding, 5
-
   include Netzke::Basepack::ItemsPersistence
 
   HEADER_HTML = "<b>Yanit</a> | RubyShift 2011 | <a href='http://github.com/skozlov/yanit'>Source code</a> | <a href='http://netzke.org'>netzke.org</a> | <a href='http://twitter.com/nomadcoder'>@nomadcoder</a></b>"
 
-  def items
-    [
+  js_configure do |c|
+    c.extend = "Ext.container.Viewport"
+    c.layout = :border
+    c.padding = 5
+  end
+
+  # In Ext 4.1 calling `render` on a viewport causes an error
+  def js_component_render
+    ""
+  end
+
+  def configure(c)
+    c.items = [
       # Top header
       {
         region: :north,
@@ -25,6 +32,7 @@ class Application < Netzke::Base
       # Workspace
       {netzke_component: :workspace, region: :center, title: "Workspace"}
     ]
+    super
   end
 
   #

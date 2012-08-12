@@ -3,12 +3,30 @@ class IssueGrid < Netzke::Basepack::GridPanel
   model "Issue"
 
   # columns customizations (these are optional)
-  override_column :description, flex: 1
-  override_column :status, editor: {xtype: :combobox, store: Issue::STATUSES}, width: 60
-  override_column :priority, width: 50
-  override_column :created_at, hidden: true
-  override_column :updated_at, hidden: true
-  override_column :actions, width: 20
+  column :description do |c|
+    c.flex = 1
+  end
+
+  column :status do |c|
+    c.editor = {xtype: :combobox, store: Issue::STATUSES}
+    c.width = 60
+  end
+
+  column :priority do |c|
+    c.width = 50
+  end
+
+  column :created_at do |c|
+    c.hidden = true
+  end
+
+  column :updated_at do |c|
+    c.hidden = true
+  end
+
+  column :actions do |c|
+    c.width = 20
+  end
 
   # The inspect action (and column)
   include Netzke::Yanit::Inspectable

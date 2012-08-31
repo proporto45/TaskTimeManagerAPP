@@ -8,8 +8,8 @@ class UserIssueExplorer < Netzke::Communitypack::OneToManyExplorer
 
   component :container do |c|
     c.klass = UserGrid
-    c.region = :north
-    c.height = 200
+    c.region = :west
+    c.width = 300
     c.split = true
     super c
   end
@@ -20,5 +20,11 @@ class UserIssueExplorer < Netzke::Communitypack::OneToManyExplorer
       assignee__name: {included: false} # we don'n need this column in ProjectIssueExplorer
     }
     super c
+  end
+
+  # Override the endpoint in order to additionally set the title of the collection grid
+  endpoint :select_container_record do |params, this|
+    super(params, this)
+    this.collection.set_title("Issues assigned to #{User.find(component_session[:container_id]).name}");
   end
 end

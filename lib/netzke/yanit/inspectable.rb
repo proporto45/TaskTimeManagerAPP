@@ -11,7 +11,7 @@ module Netzke
         column :inspect do |c|
           c.type = :action
           c.actions = [{name: :inspect, icon: :arrow_right}]
-          c.width = 50
+          c.width = 20
           c.text = ""
         end
 

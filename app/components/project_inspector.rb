@@ -44,7 +44,7 @@ class ProjectInspector < Netzke::Base
       # FIXME
       #scope: lambda { |rel| rel.assignees_for_project(project) },
 
-      columns: [{name: :name, flex: 1}, {name: :email, flex: 1}, {name: :actions, width: 20}],
+      columns: [{name: :name, flex: 1}, {name: :email, flex: 1}],
       bbar: []
     }
 
@@ -53,7 +53,7 @@ class ProjectInspector < Netzke::Base
       strong_default_attrs: {project_id: project.id},
 
       # we only need the following columns
-      columns: [:name, {name: :description, flex: 1}, :priority, :status, :started_on, :due_on, {name: :actions, width: 20}],
+      columns: [:name, {name: :description, flex: 1}, :priority, :status, :started_on, :due_on],
       bbar: [:add_in_form, :edit_in_form, :apply, "-", :del]
     }
   end
@@ -66,7 +66,7 @@ class ProjectInspector < Netzke::Base
     c.klass = IssueGrid
     c.scope = {project_id: project.id}
     c.strong_default_attrs = {project_id: project.id}
-    c.columns = [:name, :description, :priority, :status, :assignee__name, :started_on, :due_on, {name: :actions, width: 20}]
+    c.columns = [:name, :description, :priority, :status, :assignee__name, :started_on, :due_on]
   end
 
   # Simple HTML with statistics on this project

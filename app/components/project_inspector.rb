@@ -10,8 +10,10 @@ class ProjectInspector < Netzke::Base
   attr_accessor :project
 
   def configure(c)
+    c.record_id = Project.first.try(:id) # handy for testing
+
     super
-    c.record_id ||= Project.first.try(:id) # handy for testing
+
     self.project = Project.find(c.record_id)
 
     # Set title to the current project's name
@@ -19,7 +21,7 @@ class ProjectInspector < Netzke::Base
 
     # Specify regions
     c.items = [
-      # In the "north" we'll have a little HTML window with statistics
+      # In the "east" we'll have a little HTML window with statistics
       {
         region: :east,
         width: 100,
@@ -42,7 +44,7 @@ class ProjectInspector < Netzke::Base
       title: "People involved in #{project.name}",
 
       # FIXME
-      #scope: lambda { |rel| rel.assignees_for_project(project) },
+      # scope: lambda { |rel| rel.assignees_for_project(project) },
 
       columns: [{name: :name, flex: 1}, {name: :email, flex: 1}],
       bbar: []

@@ -1,18 +1,12 @@
 # Our top-level Application component
-class Application < Netzke::Base
+class Application < Netzke::Basepack::Viewport
   include Netzke::Basepack::ItemsPersistence
 
-  HEADER_HTML = "<b>Yanit</a> | RubyShift 2011 | <a href='http://github.com/skozlov/yanit'>Source code</a> | <a href='http://netzke.org'>netzke.org</a> | <a href='http://twitter.com/nomadcoder'>@nomadcoder</a></b>"
+  HEADER_HTML = "<b>Yanit</a> | RubyShift 2011 | <a href='http://github.com/nomadcoder/yanit'>Source code</a> | <a href='http://netzke.org'>netzke.org</a> | <a href='http://twitter.com/nomadcoder'>@nomadcoder</a></b>"
 
   js_configure do |c|
-    c.extend = "Ext.container.Viewport"
     c.layout = :border
     c.padding = 5
-  end
-
-  # In Ext 4.1 calling `render` on a viewport causes an error
-  def js_component_render
-    ""
   end
 
   def configure(c)
@@ -25,12 +19,8 @@ class Application < Netzke::Base
         body_style: 'background: transparent; text-align: right;',
         html: HEADER_HTML
       },
-
-      # Navigator
-      {netzke_component: :navigator, region: :west, width: 200, split: true, collapsible: true, title: "Navigator"},
-
-      # Workspace
-      {netzke_component: :workspace, region: :center, title: "Workspace"}
+      :navigator,
+      :workspace
     ]
     super
   end
@@ -41,11 +31,18 @@ class Application < Netzke::Base
 
   component :navigator do |c|
     c.klass = Navigator
-    c.workspace_id = [global_id, "workspace"].join("__")
+    c.title = "Navigator"
+    c.collapsible = true
+    c.split = true
+    c.width = 200
+    c.region = :west
+    c.workspace_id = [js_id, "workspace"].join("__")
   end
 
   component :workspace do |c|
     c.klass = Netzke::Communitypack::Workspace
+    c.title = "Workspace"
+    c.region = :center
     c.dashboard_config = dashboard_config
   end
 

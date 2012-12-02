@@ -1,5 +1,5 @@
 # This issue grid is used across multiple views
-class IssueGrid < Netzke::Basepack::GridPanel
+class IssueGrid < Netzke::Basepack::Grid
   model "Issue"
 
   # columns customizations (these are optional)
@@ -31,13 +31,9 @@ class IssueGrid < Netzke::Basepack::GridPanel
   # The inspect action (and column)
   include Netzke::Yanit::Inspectable
 
-  # Use our custom IssueForm for Add/Edit forms
-  add_form_config         class_name: "IssueForm"
-  edit_form_config        class_name: "IssueForm"
-  multi_edit_form_config  class_name: "IssueForm"
-
-  # Increase size of form windows
-  add_form_window_config        width: 600
-  edit_form_window_config       width: 600
-  multi_edit_form_window_config width: 600
+  def preconfigure_record_window(c)
+    super
+    c.form_config.klass = IssueForm
+    c.width = 600
+  end
 end

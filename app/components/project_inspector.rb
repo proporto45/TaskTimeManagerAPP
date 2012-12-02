@@ -1,7 +1,7 @@
 # A rather complex component that allows working with a given project.
 # Consists of a simple statistics HTML on top. Followed with UserIssueExplorer in the middle, that displays all all issues of this project per user. And finally - an issue grid with all issues for this project on the top.
 class ProjectInspector < Netzke::Base
-  include Netzke::Basepack::ItemsPersistence
+  include Netzke::Basepack::ItemPersistence
 
   js_configure do |c|
     c.layout = :border

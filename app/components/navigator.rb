@@ -9,7 +9,7 @@ class Navigator < Netzke::Base
 
   css_configure do |c|
   # Include custom stylesheets from navigator/stylesheets/navigator.css
-    c.include
+    c.require
   end
 
   def configure(c)

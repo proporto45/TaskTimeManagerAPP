@@ -1,5 +1,5 @@
 # User grid with some pre-configured columns
-class UserGrid < Netzke::Basepack::GridPanel
+class UserGrid < Netzke::Basepack::Grid
   model "User"
 
   column :name do |c|

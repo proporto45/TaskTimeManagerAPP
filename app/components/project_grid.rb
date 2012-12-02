@@ -1,5 +1,5 @@
 # Our customized project grid
-class ProjectGrid < Netzke::Basepack::GridPanel
+class ProjectGrid < Netzke::Basepack::Grid
   model "Project"
 
   # columns customizations (these are optional)

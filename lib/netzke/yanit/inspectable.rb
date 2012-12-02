@@ -19,7 +19,7 @@ module Netzke
           c.on_inspect = <<-JS
             function(record){
               var workspace = Ext.ComponentManager.get('application__workspace');
-              workspace.loadChild("#{name.sub("Grid", "Inspector")}", {config: {record_id: record.get('id')}, newTab: true});
+              workspace.loadInTab("#{name.sub("Grid", "Inspector")}", {config: {record_id: record.get('id')}, newTab: true});
             }
           JS
         end

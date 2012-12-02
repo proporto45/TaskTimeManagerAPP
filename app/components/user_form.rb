@@ -1,5 +1,5 @@
 # Custom user form (predefined model and layout)
-class UserForm < Netzke::Basepack::FormPanel
+class UserForm < Netzke::Basepack::Form
   def configure(c)
     c.record = User.first # default user id - handy for individual component testing
 

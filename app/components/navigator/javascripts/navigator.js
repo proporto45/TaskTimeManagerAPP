@@ -10,7 +10,6 @@
 
     this.on('itemclick', function(view, r, item, index, e) {
       var component = r.raw.component;
-      console.log("component:", component);
       if (component) this.workspace.loadInTab(component, {newTab: e.hasModifier()});
     });
   },

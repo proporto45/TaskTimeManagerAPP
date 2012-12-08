@@ -2,6 +2,12 @@
 class UserGrid < Netzke::Basepack::Grid
   model "User"
 
+  def configure(c)
+    c.title = 'Users'
+    super
+    c.model = 'User'
+  end
+
   column :name do |c|
     c.width = 200
     c.flex = 1

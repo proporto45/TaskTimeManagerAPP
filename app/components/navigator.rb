@@ -7,46 +7,30 @@ class Navigator < Netzke::Base
     c.mixin
   end
 
-  css_configure do |c|
-  # Include custom stylesheets from navigator/stylesheets/navigator.css
-    c.require
+  def leaf(text, component, icon = nil)
+    { text: text,
+      icon: icon && uri_to_icon(icon),
+      cmp: component,
+      leaf: true
+    }
   end
 
   def configure(c)
     c.store = {
       root: {
         expanded: true,
-        children: [{
-          text: 'Projects',
-          leaf: true,
-          icon_cls: 'icon-projects',
-          component: 'ProjectGrid'
-        },{
-          text: 'Users',
-          leaf: true,
-          icon_cls: 'icon-users',
-          component: 'UserGrid'
-        },{
-          text: 'Issues',
-          icon_cls: 'icon-issues',
-          expanded: true,
-          children: [{
-            text: "All",
-            leaf: true,
-            icon_cls: 'icon-all-issues',
-            component: "IssueGrid"
-          },{
-            text: "Per project",
-            leaf: true,
-            icon_cls: 'icon-projects-issues',
-            component: "ProjectIssueExplorer"
-          },{
-            text: "Per user",
-            leaf: true,
-            icon_cls: 'icon-users-issues',
-            component: "UserIssueExplorer"
-          }]
-        }]
+        children: [
+          leaf('Projects', 'ProjectGrid', :page_white_stack),
+          { text: 'Issues',
+            icon_cls: 'icon-issues',
+            expanded: true,
+            children: [
+              leaf('All', 'IssueGrid', :application_view_list),
+              leaf('Per project', 'ProjectIssueExplorer', :page_white_copy),
+              leaf('Per user', 'UserIssueExplorer', :report_user)
+            ]
+          }
+        ]
       }
     }
 

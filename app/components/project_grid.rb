@@ -1,6 +1,10 @@
 # Our customized project grid
 class ProjectGrid < Netzke::Basepack::Grid
-  model "Project"
+  def configure(c)
+    c.title = "Projects"
+    super
+    c.model = "Project"
+  end
 
   # columns customizations (these are optional)
   column :name do |c|

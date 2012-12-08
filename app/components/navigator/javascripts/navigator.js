@@ -9,7 +9,7 @@
     }, this);
 
     this.on('itemclick', function(view, r, item, index, e) {
-      var component = r.raw.component;
+      var component = r.raw.cmp;
       if (component) this.workspace.loadInTab(component, {newTab: e.hasModifier()});
     });
   },

@@ -1,6 +1,13 @@
 # This issue grid is used across multiple views
 class IssueGrid < Netzke::Basepack::Grid
-  model "Issue"
+  js_configure do |c|
+    c.title = "Issues"
+  end
+
+  def configure(c)
+    super
+    c.model = "Issue"
+  end
 
   # columns customizations (these are optional)
   column :description do |c|

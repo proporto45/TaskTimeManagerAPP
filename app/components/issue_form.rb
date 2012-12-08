@@ -1,8 +1,7 @@
 # Our custom IssueForm - it has a custom layout and pre-assigned model
 class IssueForm < Netzke::Basepack::Form
-  model "Issue"
-
   def configure(c)
+    c.model = 'Issue'
     c.record_id = Issue.first.try(:id) # default record
     super
     c.items = [

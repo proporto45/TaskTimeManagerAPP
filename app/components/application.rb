@@ -2,7 +2,7 @@
 class Application < Netzke::Basepack::Viewport
   include Netzke::Basepack::ItemPersistence
 
-  HEADER_HTML = "<b>Yanit</a> | RubyShift 2011 | <a href='http://github.com/nomadcoder/yanit'>Source code</a> | <a href='http://netzke.org'>netzke.org</a> | <a href='http://twitter.com/nomadcoder'>@nomadcoder</a></b>"
+  HEADER_HTML = "<b>Yanit - Yet Another (Netzke) Issue Tracker</a> | Built with Netzke v0.8 | <a href='http://github.com/nomadcoder/yanit'>Source code</a> | <a href='http://netzke.org'>netzke.org</a> | <a href='http://twitter.com/nomadcoder'>@nomadcoder</a></b>"
 
   js_configure do |c|
     c.layout = :border

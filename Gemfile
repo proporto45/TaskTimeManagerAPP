@@ -1,17 +1,17 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.7'
+gem 'rails', '~>3.2.9'
 
 gem 'sqlite3'
 
-#gem 'netzke-core'
-#gem 'netzke-basepack'
-#gem 'netzke-communitypack'
+gem 'netzke-core', '~>0.8'
+gem 'netzke-basepack', '~>0.8'
+gem 'netzke-communitypack', github: 'netzke/netzke-communitypack'
 
-gem 'netzke-core',          :path => File.expand_path('../vendor/gems/netzke-core', __FILE__)
-gem 'netzke-basepack',      :path => File.expand_path('../vendor/gems/netzke-basepack', __FILE__)
-gem 'netzke-communitypack', :path => File.expand_path('../vendor/gems/netzke-communitypack', __FILE__)
-
+# Local gems
+# gem 'netzke-core',          path: "~/code/netzke/netzke-core"
+# gem 'netzke-basepack',      path: "~/code/netzke/netzke-basepack"
+# gem 'netzke-communitypack', path: "~/code/netzke/netzke-communitypack"
 
 gem 'forgery'
 gem 'faker'

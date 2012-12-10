@@ -6,7 +6,7 @@ gem 'sqlite3'
 
 gem 'netzke-core', '~>0.8'
 gem 'netzke-basepack', '~>0.8'
-gem 'netzke-communitypack', github: 'netzke/netzke-communitypack'
+gem 'netzke-communitypack', git: "git://github.com/netzke/netzke-communitypack.git"
 
 # Local gems
 # gem 'netzke-core',          path: "~/code/netzke/netzke-core"

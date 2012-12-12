@@ -13,7 +13,7 @@ PROJECTS.times do
   Project.create :name => Forgery(:name).company_name, :description => Faker::Lorem.sentence, :on_hold => rand(10) > 6
 end
 
-ISSUES = 10000
+ISSUES = 5000
 puts "Generating #{ISSUES} issues..."
 Issue.delete_all
 user_ids = User.all.map(&:id)

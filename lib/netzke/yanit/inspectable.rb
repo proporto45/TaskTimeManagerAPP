@@ -4,7 +4,7 @@ module Netzke
       extend ActiveSupport::Concern
 
       included do |base|
-        include Netzke::Communitypack::ActionColumn
+        include Netzke::Basepack::ActionColumn
 
         # column_action :inspect, :icon => "/images/icons/page_white_go.png"
 

@@ -31,7 +31,7 @@ class IssueGrid < Netzke::Basepack::Grid
     c.hidden = true
   end
 
-  column :actions do |c|
+  column :inspect do |c|
     c.width = 20
   end
 

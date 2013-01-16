@@ -4,9 +4,9 @@ gem 'rails', '~>3.2.9'
 
 gem 'sqlite3'
 
-gem 'netzke-core', '~>0.8'
-gem 'netzke-basepack', '~>0.8'
-gem 'netzke-communitypack', git: "git://github.com/netzke/netzke-communitypack.git"
+gem 'netzke-core', github: 'netzke/netzke-core'
+gem 'netzke-basepack', github: 'netzke/netzke-basepack'
+gem 'netzke-communitypack', github: 'netzke/netzke-communitypack'
 
 # Local gems
 # gem 'netzke-core',          path: "~/code/netzke/netzke-core"

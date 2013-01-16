@@ -17,10 +17,6 @@ class UserGrid < Netzke::Basepack::Grid
     c.width = 200
   end
 
-  column :actions do |c|
-    c.width = 20
-  end
-
   column :created_at do |c|
     c.read_only = true
   end

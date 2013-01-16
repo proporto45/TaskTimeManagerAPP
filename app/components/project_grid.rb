@@ -15,10 +15,6 @@ class ProjectGrid < Netzke::Basepack::Grid
     c.flex = 1
   end
 
-  column :actions do |c|
-    c.width = 20
-  end
-
   column :created_at do |c|
     c.read_only = true
   end

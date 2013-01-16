@@ -6,8 +6,6 @@ module Netzke
       included do |base|
         include Netzke::Basepack::ActionColumn
 
-        # column_action :inspect, :icon => "/images/icons/page_white_go.png"
-
         column :inspect do |c|
           c.type = :action
           c.actions = [{name: :inspect, icon: :arrow_right}]
@@ -23,10 +21,6 @@ module Netzke
             }
           JS
         end
-      end
-
-      def columns
-        super + [:inspect]
       end
     end
   end

@@ -1,7 +1,7 @@
-# Component that allows exploring issues per project (using 2 grids). Inherits from the same Netzke::Communitypack::OneToManyExplorer as UserIssueExplorer.
+# Component that allows exploring issues per project (using 2 grids). Inherits from the same Netzke::Communitypack::OneToManyExplorer as WorkerIssueExplorer.
 class ProjectIssueExplorer < Netzke::Communitypack::OneToManyExplorer
   def configure(c)
-    c.title = "Project/Issues"
+    c.title = "Project/Tasks"
     c.foreign_key = :project_id
     super
   end

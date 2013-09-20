@@ -3,7 +3,7 @@ source 'http://rubygems.org'
 gem 'rails', '~>3.2.9'
 
 gem 'sqlite3'
-
+gem 'devise'
 gem 'netzke-core', github: 'netzke/netzke-core'
 gem 'netzke-basepack', github: 'netzke/netzke-basepack'
 gem 'netzke-communitypack', github: 'netzke/netzke-communitypack'

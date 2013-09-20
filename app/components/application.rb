@@ -2,7 +2,7 @@
 class Application < Netzke::Basepack::Viewport
   include Netzke::Basepack::ItemPersistence
 
-  HEADER_HTML = "<b>Yanit - Yet Another (Netzke) Issue Tracker</a> | Built with Netzke v0.8 | <a href='http://github.com/nomadcoder/yanit'>Source code</a> | <a href='http://netzke.org'>netzke.org</a> | <a href='http://twitter.com/nomadcoder'>@nomadcoder</a></b>"
+  HEADER_HTML = "<b>Task Time Manager</b>"
 
   js_configure do |c|
     c.layout = :border
@@ -11,16 +11,16 @@ class Application < Netzke::Basepack::Viewport
 
   def configure(c)
     c.items = [
-      # Top header
-      {
-        region: :north,
-        height: 22,
-        border: 0,
-        body_style: 'background: transparent; text-align: right;',
-        html: HEADER_HTML
-      },
-      :navigator,
-      :workspace
+          # Top header
+          {
+            region: :north,
+            height: 22,
+            border: 0,
+            body_style: 'background: transparent; text-align: right;',
+            html: HEADER_HTML
+          },
+          :navigator,
+          :workspace
     ]
     super
   end
@@ -28,10 +28,13 @@ class Application < Netzke::Basepack::Viewport
   #
   # Component declarations
   #
-
+  #component :login do |c|
+  #  c.region = :north
+ # end
+  
   component :navigator do |c|
     c.klass = Navigator
-    c.title = "Navigator"
+    c.title = "Menu"
     c.collapsible = true
     c.split = true
     c.width = 200

@@ -1,4 +1,10 @@
 Yanit::Application.routes.draw do
+  devise_for :users
+
+#  devise_for :admins
+
+ # devise_for :users
+
   # Netzke routes
   netzke
 

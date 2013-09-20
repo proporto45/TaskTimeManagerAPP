@@ -1,12 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Yanit - Yet Another (Netzke) Issue Tracker</title>
-  <%= load_netzke %>
-  <%= csrf_meta_tags %>
+  <title>Task Time Manager Application</title>
+
+<style>
+  
+ul.hmenu {
+  list-style: none;
+  position: absolute;
+  right: 125px;
+  margin: 0 0 2em;
+  padding: 0;
+}
+
+ul.hmenu li {
+  display: inline;  
+}
+</style>
+	
+  
 </head>
 <body>
-
+	<ul class="hmenu">
+	  <%= render 'devise/user_menu/registration_items' %>  
+	  <%= render 'devise/user_menu/login_items' %>
+	</ul>
+	
+	<%= load_netzke %>
+	  <%= csrf_meta_tags %>
 <%= yield %>
 
 </body>

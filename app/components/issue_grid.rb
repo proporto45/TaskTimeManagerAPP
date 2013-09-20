@@ -1,7 +1,7 @@
 # This issue grid is used across multiple views
 class IssueGrid < Netzke::Basepack::Grid
   js_configure do |c|
-    c.title = "Issues"
+    c.title = "Tasks"
   end
 
   def configure(c)

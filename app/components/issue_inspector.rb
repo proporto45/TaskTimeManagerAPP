@@ -15,7 +15,7 @@ class IssueInspector < Netzke::Base
   end
 
   component :assignee_details do |c|
-    c.klass = UserForm
+    c.klass = WorkerForm
     c.region = :center
     c.title = "Assignee details"
     c.record_id = issue.assignee.id

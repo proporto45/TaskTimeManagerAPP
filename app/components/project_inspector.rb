@@ -1,5 +1,5 @@
 # A rather complex component that allows working with a given project.
-# Consists of a simple statistics HTML on top. Followed with UserIssueExplorer in the middle, that displays all all issues of this project per user. And finally - an issue grid with all issues for this project on the top.
+# Consists of a simple statistics HTML on top. Followed with WorkerIssueExplorer in the middle, that displays all all issues of this project per worker. And finally - an issue grid with all issues for this project on the top.
 class ProjectInspector < Netzke::Base
   include Netzke::Basepack::ItemPersistence
 
@@ -30,12 +30,12 @@ class ProjectInspector < Netzke::Base
         html: info_html(project)
       },
 
-      :user_issue_explorer,
+      :worker_issue_explorer,
       :project_issues
     ]
   end
 
-  component :user_issue_explorer do |c|
+  component :worker_issue_explorer do |c|
     c.region = :center
     c.border = false
 
@@ -64,7 +64,7 @@ class ProjectInspector < Netzke::Base
     c.region = :south
     c.height = 300
     c.split = true
-    c.title = "All issues for #{project.name}"
+    c.title = "All tasks for #{project.name}"
     c.klass = IssueGrid
     c.scope = {project_id: project.id}
     c.strong_default_attrs = {project_id: project.id}
@@ -74,7 +74,7 @@ class ProjectInspector < Netzke::Base
   # Simple HTML with statistics on this project
   def info_html(project)
     %Q{
-      <b>Issues:</b> #{project.issues.count} total, #{project.issues.open_or_new.count} open
+      <b>Tasks:</b> #{project.issues.count} total, #{project.issues.open_or_new.count} open
       <br>
       <br>
       <b>Assignees:</b> #{project.assignees.count}

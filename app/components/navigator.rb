@@ -21,13 +21,13 @@ class Navigator < Netzke::Base
         expanded: true,
         children: [
           leaf('Projects', 'ProjectGrid', :page_white_stack),
-          { text: 'Issues',
+          { text: 'Tasks',
             icon_cls: 'icon-issues',
             expanded: true,
             children: [
               leaf('All', 'IssueGrid', :application_view_list),
               leaf('Per project', 'ProjectIssueExplorer', :page_white_copy),
-              leaf('Per user', 'UserIssueExplorer', :report_user)
+              leaf('Per worker', 'WorkerIssueExplorer', :report_worker)
             ]
           }
         ]
